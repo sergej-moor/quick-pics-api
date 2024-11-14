@@ -1,7 +1,8 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
 import router from "./routes/imageRoutes.ts";
-import { ImageProcessingService } from "./services/imageProcessingService.ts";
+
 import { validateQueryParams } from "./middleware/validationMiddleware.ts";
+import { rateLimit } from "./middleware/rateLimitMiddleware.ts";
 
 const app = new Application();
 const port = 8000;
@@ -28,7 +29,7 @@ app.use(async (ctx, next) => {
   );
   await next();
 });
-
+app.use(rateLimit);
 app.use(validateQueryParams);
 
 app.use(router.routes());
