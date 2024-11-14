@@ -4,6 +4,7 @@ import { encodeBase64 } from "https://deno.land/std/encoding/base64.ts";
 async function convertImagesToBase64() {
   const images: Record<string, any>[] = [];
   const publicDir = "./public";
+  let id = 1;
 
   for await (const entry of walk(publicDir, { exts: [".jpg", ".jpeg"] })) {
     if (entry.isFile) {
@@ -21,7 +22,7 @@ async function convertImagesToBase64() {
       const title = entry.name.split(".")[0];
 
       images.push({
-        id: crypto.randomUUID(),
+        id: id++,
         category,
         title,
         base64: `data:image/jpeg;base64,${base64}`,
