@@ -6,7 +6,9 @@ export interface Image {
 }
 
 export enum ImageCategory {
-  ABSTRACT = "abstract",
-  NATURE = "nature",
-  PEOPLE = "people",
+  THREE_D = "3d",
+  GLASS = "glass",
+  WATER = "water",
+  PAINTING = "painting",
+  POURING = "pouring",
 }
