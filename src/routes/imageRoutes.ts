@@ -7,7 +7,7 @@ import { ImageController } from "../controllers/imageController.ts";
 const router = new Router();
 
 router
-  .get("/images/list", (ctx) => {
+  .get("/list", (ctx) => {
     ctx.response.body = images.map((img) => ({
       id: img.id,
       category: img.category,
@@ -15,7 +15,7 @@ router
     }));
   })
   // Get random image
-  .get("/images", (ctx) => {
+  .get("/", (ctx) => {
     const randomIndex = Math.floor(Math.random() * images.length);
     const randomImage = images[randomIndex];
 
@@ -32,7 +32,7 @@ router
   })
 
   // Get random image by category
-  .get("/images/:category", (ctx) => {
+  .get("/:category", (ctx) => {
     const category = ctx.params.category as ImageCategory;
     const categoryImages = images.filter((img) => img.category === category);
 
@@ -58,7 +58,7 @@ router
   })
 
   // Get specific image by ID
-  .get("/images/:id", (ctx) => {
+  .get("/:id", (ctx) => {
     // Check for resize params
     if (
       ctx.request.url.searchParams.has("width") ||
