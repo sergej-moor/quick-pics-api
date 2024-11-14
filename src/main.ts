@@ -3,6 +3,7 @@ import router from "./routes/imageRoutes.ts";
 
 import { validateQueryParams } from "./middleware/validationMiddleware.ts";
 import { rateLimit } from "./middleware/rateLimitMiddleware.ts";
+import { cacheResponse } from "./middleware/cacheMiddleware.ts";
 
 const app = new Application();
 const port = 8000;
@@ -29,6 +30,7 @@ app.use(async (ctx, next) => {
   );
   await next();
 });
+app.use(cacheResponse);
 app.use(rateLimit);
 app.use(validateQueryParams);
 
