@@ -9,7 +9,7 @@ export interface ImageProcessingOptions {
 
 export class ImageProcessingService {
   private static readonly MAX_DIMENSION = 2048;
-  private static readonly DEFAULT_QUALITY = 60;
+  private static readonly DEFAULT_QUALITY = 40;
 
   static validateDimensions(width?: number, height?: number): string | null {
     if (!width && !height) {
