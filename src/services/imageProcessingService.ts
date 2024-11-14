@@ -4,10 +4,12 @@ export interface ImageProcessingOptions {
   width?: number;
   height?: number;
   mode: "resize" | "crop";
+  quality?: number;
 }
 
 export class ImageProcessingService {
   private static readonly MAX_DIMENSION = 2048;
+  private static readonly DEFAULT_QUALITY = 60;
 
   static validateDimensions(width?: number, height?: number): string | null {
     if (!width && !height) {
@@ -77,6 +79,6 @@ export class ImageProcessingService {
       );
     }
 
-    return await image.encode();
+    return await image.encode(options.quality || this.DEFAULT_QUALITY);
   }
 }

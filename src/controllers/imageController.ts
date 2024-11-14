@@ -12,6 +12,7 @@ export class ImageController {
       mode: (ctx.request.url.searchParams.get("mode") || "resize") as
         | "resize"
         | "crop",
+      quality: Number(ctx.request.url.searchParams.get("q")) || 60,
     };
   }
 
