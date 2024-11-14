@@ -7,7 +7,13 @@ import { ImageController } from "../controllers/imageController.ts";
 const router = new Router();
 
 router
-
+  .get("/images/list", (ctx) => {
+    ctx.response.body = images.map((img) => ({
+      id: img.id,
+      category: img.category,
+      title: img.title,
+    }));
+  })
   // Get random image
   .get("/images", (ctx) => {
     const randomIndex = Math.floor(Math.random() * images.length);
