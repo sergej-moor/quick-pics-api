@@ -1,4 +1,5 @@
-import { Context } from "https://deno.land/x/oak/mod.ts";
+import { Context, RouterContext } from "https://deno.land/x/oak/mod.ts";
+
 import { images } from "../data/imageData.ts";
 import { Image } from "../types/types.ts";
 import { ImageProcessingService } from "../services/imageProcessingService.ts";
@@ -40,10 +41,10 @@ export class ImageController {
     }
 
     // Otherwise process the image
-    await this.sendResizedImage(ctx);
+    await this.sendResizedImage(ctx as RouterContext<string>);
   }
 
-  static async sendResizedImage(ctx: Context) {
+  static async sendResizedImage(ctx: RouterContext<string>) {
     const id = ctx.params.id;
     const image = images.find((img) => img.id.toString() === id);
 
