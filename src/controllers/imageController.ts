@@ -1,14 +1,14 @@
 import { Context } from "https://deno.land/x/oak/mod.ts";
 import { images } from "../data/imageData.ts";
-import { Image, ImageCategory } from "../types/types.ts";
+import { Image } from "../types/types.ts";
 import { ImageProcessingService } from "../services/imageProcessingService.ts";
 import { decodeBase64 } from "https://deno.land/std/encoding/base64.ts";
 
 export class ImageController {
   private static getResizeOptions(ctx: Context) {
     return {
-      width: Number(ctx.request.url.searchParams.get("width")) || undefined,
-      height: Number(ctx.request.url.searchParams.get("height")) || undefined,
+      width: Number(ctx.request.url.searchParams.get("w")) || undefined,
+      height: Number(ctx.request.url.searchParams.get("h")) || undefined,
       mode: (ctx.request.url.searchParams.get("mode") || "resize") as
         | "resize"
         | "crop",

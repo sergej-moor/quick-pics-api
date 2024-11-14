@@ -21,8 +21,8 @@ router
 
     // Check for resize params
     if (
-      ctx.request.url.searchParams.has("width") ||
-      ctx.request.url.searchParams.has("height")
+      ctx.request.url.searchParams.has("w") ||
+      ctx.request.url.searchParams.has("h")
     ) {
       ctx.params.id = randomImage.id.toString(); // Set the id param for the resize function
       return ImageController.sendResizedImage(ctx);
@@ -47,8 +47,8 @@ router
 
     // Check for resize params
     if (
-      ctx.request.url.searchParams.has("width") ||
-      ctx.request.url.searchParams.has("height")
+      ctx.request.url.searchParams.has("w") ||
+      ctx.request.url.searchParams.has("h")
     ) {
       ctx.params.id = randomImage.id.toString(); // Set the id param for the resize function
       return ImageController.sendResizedImage(ctx);
@@ -61,8 +61,8 @@ router
   .get("/:id", (ctx) => {
     // Check for resize params
     if (
-      ctx.request.url.searchParams.has("width") ||
-      ctx.request.url.searchParams.has("height")
+      ctx.request.url.searchParams.has("w") ||
+      ctx.request.url.searchParams.has("h")
     ) {
       return ImageController.sendResizedImage(ctx);
     }
