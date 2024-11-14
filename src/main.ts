@@ -4,6 +4,7 @@ import router from "./routes/imageRoutes.ts";
 import { validateQueryParams } from "./middleware/validationMiddleware.ts";
 import { rateLimit } from "./middleware/rateLimitMiddleware.ts";
 import { cacheResponse } from "./middleware/cacheMiddleware.ts";
+import healthRouter from "./routes/healthRoutes.ts";
 
 const app = new Application();
 const port = 8000;
@@ -30,6 +31,10 @@ app.use(async (ctx, next) => {
   );
   await next();
 });
+
+app.use(healthRouter.routes());
+app.use(healthRouter.allowedMethods());
+
 app.use(cacheResponse);
 app.use(rateLimit);
 app.use(validateQueryParams);
