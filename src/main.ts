@@ -1,8 +1,11 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
 import router from "./routes/imageRoutes.ts";
+import { ImageProcessingService } from "./services/imageProcessingService.ts";
 
 const app = new Application();
 const port = 8000;
+
+// Add this before creating the Application
 
 // Error handling middleware
 app.use(async (ctx, next) => {
