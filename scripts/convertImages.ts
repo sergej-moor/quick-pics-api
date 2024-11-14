@@ -13,7 +13,8 @@ async function convertImagesToBase64() {
       const base64 = encodeBase64(imageData);
 
       // Get category from path
-      const pathParts = entry.path.split("/");
+      const pathParts = entry.path.split("\\");
+      console.log(pathParts);
       const category = pathParts[pathParts.length - 2];
 
       // Get filename without extension
@@ -26,7 +27,7 @@ async function convertImagesToBase64() {
         base64: `data:image/jpeg;base64,${base64}`,
       });
 
-      console.log(`Converted: ${entry.name}`);
+      console.log(`Converted:${category} ${entry.name}`);
     }
   }
 
